@@ -317,3 +317,10 @@ maestro test .maestro/book-appointment.yaml
 k6 run load-tests/appointments.k6.js
 k6 run load-tests/slots.k6.js
 ```
+
+<img width="942" height="2046" alt="image" src="https://github.com/user-attachments/assets/54e59e71-a122-416b-b248-1ec0f005ee3b" />
+<img width="942" height="2046" alt="image" src="https://github.com/user-attachments/assets/f0164bc3-d33e-4930-8096-900e0ed8a870" />
+
+
+
+
