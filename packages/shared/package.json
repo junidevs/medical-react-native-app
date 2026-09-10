@@ -1,0 +1,22 @@
+{
+  "name": "@medconnect/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --check \"src/**/*.{ts,tsx,json,md}\""
+  },
+  "dependencies": {
+    "zod": "4.5.2"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3",
+    "vitest": "4.1.11"
+  }
+}

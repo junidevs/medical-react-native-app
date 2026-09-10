@@ -1,0 +1,71 @@
+{
+  "cli": {
+    "version": ">= 16.18.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
+      "env": {
+        "EXPO_PUBLIC_AUTH_MODE": "entra",
+        "EXPO_PUBLIC_FEATURE_MOCK_LOGIN": "false",
+        "EXPO_PUBLIC_FEATURE_PORTAL_WEBVIEW": "true",
+        "EXPO_PUBLIC_FEATURE_PORTAL_QR_SCANNER": "true",
+        "EXPO_PUBLIC_FEATURE_PUSH_NOTIFICATIONS": "true",
+        "EXPO_PUBLIC_FEATURE_BIOMETRIC_LOCK": "true",
+        "EXPO_PUBLIC_FEATURE_DEVICE_INTEGRITY": "true",
+        "EXPO_PUBLIC_FEATURE_WIDGETS": "true",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true",
+        "EXPO_PUBLIC_LOTTIE": "1",
+        "EXPO_PUBLIC_BLUR": "1"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "env": {
+        "EXPO_PUBLIC_AUTH_MODE": "entra",
+        "EXPO_PUBLIC_FEATURE_MOCK_LOGIN": "false",
+        "EXPO_PUBLIC_FEATURE_PORTAL_WEBVIEW": "true",
+        "EXPO_PUBLIC_FEATURE_PORTAL_QR_SCANNER": "true",
+        "EXPO_PUBLIC_FEATURE_PUSH_NOTIFICATIONS": "true",
+        "EXPO_PUBLIC_FEATURE_BIOMETRIC_LOCK": "true",
+        "EXPO_PUBLIC_FEATURE_DEVICE_INTEGRITY": "true",
+        "EXPO_PUBLIC_FEATURE_WIDGETS": "true",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true",
+        "EXPO_PUBLIC_LOTTIE": "1",
+        "EXPO_PUBLIC_BLUR": "1"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_AUTH_MODE": "entra",
+        "EXPO_PUBLIC_FEATURE_MOCK_LOGIN": "false",
+        "EXPO_PUBLIC_FEATURE_PORTAL_WEBVIEW": "true",
+        "EXPO_PUBLIC_FEATURE_PORTAL_QR_SCANNER": "true",
+        "EXPO_PUBLIC_FEATURE_PUSH_NOTIFICATIONS": "true",
+        "EXPO_PUBLIC_FEATURE_BIOMETRIC_LOCK": "true",
+        "EXPO_PUBLIC_FEATURE_DEVICE_INTEGRITY": "true",
+        "EXPO_PUBLIC_FEATURE_WIDGETS": "true",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true",
+        "EXPO_PUBLIC_LOTTIE": "1",
+        "EXPO_PUBLIC_BLUR": "1"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "0000000000",
+        "appleTeamId": "TEAMID1234"
+      },
+      "android": {
+        "serviceAccountKeyPath": "./google-play-service-account.json"
+      }
+    }
+  }
+}

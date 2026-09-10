@@ -1,0 +1,91 @@
+# Independent build + publish pipeline for Module Federation REMOTES (Faza 2).
+#
+# Each remote (currently: portal) is versioned and shipped on its OWN cadence,
+# separate from the host binary. The host loads whatever version this pipeline
+# publishes to the transport origin (CDN / EAS Update), with the built-in
+# fallback covering failures. Native code is NEVER shipped here - remotes are
+# JS-only (enforced by the check step below).
+name: remotes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/portal-remote/**"
+      - "packages/mf-contracts/**"
+  workflow_dispatch:
+    inputs:
+      remote:
+        description: Remote to publish
+        default: portal
+        type: choice
+        options: [portal]
+
+concurrency:
+  group: remotes-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [android, ios]
+    permissions:
+      contents: read
+      id-token: write # for OIDC to the CDN / cloud provider
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Contract test: the remote MUST still satisfy @medconnect/mf-contracts.
+      - name: Typecheck remote against contract
+        run: pnpm --filter @medconnect/portal-remote typecheck
+
+      # Guard: a remote may only ship JavaScript. Fail if any native project
+      # files sneak into the remote (they must live in the host binary).
+      - name: Enforce "remotes = only JS"
+        run: |
+          if find apps/portal-remote -path '*/android/*' -name '*.kt' -o -path '*/ios/*' -name '*.swift' | grep -q .; then
+            echo "::error::A remote must not contain native code."; exit 1
+          fi
+
+      - name: Build remote container (${{ matrix.platform }})
+        working-directory: apps/portal-remote
+        env:
+          PLATFORM: ${{ matrix.platform }}
+          # Sign chunks so the host can verify them (see script-manager.ts).
+          REPACK_CODE_SIGNING_KEY: ${{ runner.temp }}/remote-signing.pem
+          REPACK_CODE_SIGNING_PUB: ${{ runner.temp }}/remote-signing.pub
+        run: |
+          echo "${{ secrets.REMOTE_SIGNING_PRIVATE_KEY }}" > "$REPACK_CODE_SIGNING_KEY"
+          echo "${{ secrets.REMOTE_SIGNING_PUBLIC_KEY }}" > "$REPACK_CODE_SIGNING_PUB"
+          pnpm exec react-native webpack-bundle \
+            --platform "$PLATFORM" --dev false \
+            --entry-file src/index.ts \
+            --bundle-output "dist/$PLATFORM/portal.container.bundle" \
+            --assets-dest "dist/$PLATFORM"
+
+      # Version the artifact by content hash so rollouts/rollbacks are atomic.
+      - name: Compute version tag
+        id: ver
+        run: echo "tag=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      # Publish to the allowlisted HTTPS origin the host resolves at runtime.
+      # Path convention MUST match remoteContainerUrl() in script-manager.ts:
+      #   <origin>/portal/portal.container.bundle
+      - name: Publish to CDN (${{ matrix.platform }})
+        run: |
+          echo "Would upload apps/portal-remote/dist/${{ matrix.platform }}/* to"
+          echo "  $REMOTES_ORIGIN/portal/${{ steps.ver.outputs.tag }}/"
+          # e.g. aws s3 sync apps/portal-remote/dist/${{ matrix.platform }} \
+          #   "s3://$BUCKET/remotes/portal/${{ steps.ver.outputs.tag }}/${{ matrix.platform }}/"
+        env:
+          REMOTES_ORIGIN: ${{ vars.REMOTES_ORIGIN }}

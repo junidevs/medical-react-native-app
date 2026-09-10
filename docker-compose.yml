@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_DB: medconnect
+      POSTGRES_USER: medconnect
+      POSTGRES_PASSWORD: medconnect
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-18-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medconnect -d medconnect"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:8-alpine
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    environment:
+      DATABASE_URL: postgres://medconnect:medconnect@postgres:5432/medconnect
+      # Postgres 18 stores passwords as scram-sha-256; PgBouncer must auth the same way
+      # or it fails with "server login failed: wrong password type" (SQLSTATE 08P01).
+      AUTH_TYPE: scram-sha-256
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: 200
+      DEFAULT_POOL_SIZE: 20
+    ports:
+      - "6432:5432"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-p", "5432"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  postgres-18-data:
+  redis-data:
+

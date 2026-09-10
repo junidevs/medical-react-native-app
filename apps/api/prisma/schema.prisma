@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum SlotStatus {
+  AVAILABLE
+  BOOKED
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CANCELLED
+  COMPLETED
+}
+
+model User {
+  id                  String               @id @default(uuid())
+  entraObjectId       String               @unique
+  email               String               @unique
+  name                String
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  appointments        Appointment[]
+  deviceRegistrations DeviceRegistration[]
+  auditLogs           AuditLog[]
+}
+
+model Specialty {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  doctors     Doctor[]
+}
+
+model Doctor {
+  id          String    @id @default(uuid())
+  name        String
+  clinicName  String
+  rating      Decimal   @db.Decimal(2, 1)
+  specialtyId String
+  specialty   Specialty @relation(fields: [specialtyId], references: [id])
+  slots       Slot[]
+
+  @@index([specialtyId])
+}
+
+model Slot {
+  id           String         @id @default(uuid())
+  doctorId     String
+  doctor       Doctor         @relation(fields: [doctorId], references: [id])
+  startTime    DateTime
+  endTime      DateTime
+  status       SlotStatus     @default(AVAILABLE)
+  appointment  Appointment?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@unique([doctorId, startTime])
+  @@index([doctorId, status, startTime])
+}
+
+model Appointment {
+  id        String            @id @default(uuid())
+  patientId String
+  patient   User              @relation(fields: [patientId], references: [id])
+  slotId    String            @unique
+  slot      Slot              @relation(fields: [slotId], references: [id])
+  status    AppointmentStatus @default(SCHEDULED)
+  reason    String
+  deletedAt DateTime?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  @@index([patientId, status, createdAt])
+}
+
+model DeviceRegistration {
+  id             String   @id @default(uuid())
+  patientId      String
+  patient        User     @relation(fields: [patientId], references: [id])
+  platform       String
+  deviceToken    String
+  installationId String   @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([patientId])
+}
+
+model IdempotencyRecord {
+  key         String   @id
+  method      String
+  path        String
+  patientId   String
+  requestHash String
+  statusCode  Int
+  response    Json
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+
+  @@index([patientId, createdAt])
+  @@index([expiresAt])
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  actorUserId String?
+  actor       User?    @relation(fields: [actorUserId], references: [id])
+  action      String
+  entityType  String
+  entityId    String
+  metadata    Json
+  createdAt   DateTime @default(now())
+
+  @@index([entityType, entityId, createdAt])
+  @@index([actorUserId, createdAt])
+}
+

@@ -1,6 +1,3 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
-# dependencies
 node_modules/
 
 # Expo
@@ -30,14 +27,86 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# local env files
+.env
+.env.*
 .env*.local
+*.env
+*.env.*
+*.env.local
+apps/*/.env
+apps/*/.env.*
+packages/*/.env
+packages/*/.env.*
+**/.env
+**/.env.*
+**/*.env
+**/*.env.*
+**/*.env.local
+!.env.example
+!**/.env.example
+
+# secret values and service credentials
+*.secret
+*.secrets
+*.credentials
+*.credentials.*
+credentials.json
+service-account.json
+google-services.json
+GoogleService-Info.plist
+google-play-service-account.json
+firebase-service-account*.json
+serviceAccountKey*.json
+azure-credentials*.json
+azure-notification-hub*.json
+sentry.properties
+.sentryclirc
+.npmrc
+.yarnrc.yml
+.netrc
+
+# signing keys and certificates
+*.pem
+*.key
+*.cer
+*.cert
+*.crt
+*.csr
+*.p8
+*.p12
+*.jks
+*.keystore
+*.mobileprovision
+*.provisionprofile
+*.ipa
+*.apk
+*.aab
+
+# local EAS / Expo / native build state
+eas-build-*.tar.gz
+eas-build-*.log
+credentials.json
+credentials.tar.gz
+apps/mobile/ios/
+apps/mobile/android/
+apps/mobile/.eas/
+apps/mobile/.expo/
+apps/mobile/*.ipa
+apps/mobile/*.apk
+apps/mobile/*.aab
+
+# package managers
+package-lock.json
+yarn.lock
+bun.lockb
 
 # typescript
 *.tsbuildinfo
 
 example
 
-# generated native folders
 /ios
 /android
+apps/api/generated/
+apps/api/dist/
+apps/mobile/dist/

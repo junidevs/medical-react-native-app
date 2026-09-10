@@ -1,0 +1,12 @@
+appId: com.medconnect.patient
+---
+- launchApp
+- tapOn: "Zaloguj przez Entra ID"
+- tapOn: "Rezerwuj"
+- tapOn: "Dr Anna Kowalska"
+- tapOn:
+    text: ".*"
+    index: 3
+- tapOn: "Potwierdź wizytę"
+- assertVisible: "Wizyta potwierdzona."
+

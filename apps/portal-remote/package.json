@@ -1,0 +1,33 @@
+{
+  "name": "@medconnect/portal-remote",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "bundle:android": "react-native webpack-bundle --platform android --dev false --entry-file src/index.ts --bundle-output dist/android/portal.container.bundle --assets-dest dist/android",
+    "bundle:ios": "react-native webpack-bundle --platform ios --dev false --entry-file src/index.ts --bundle-output dist/ios/portal.container.bundle --assets-dest dist/ios",
+    "start": "react-native webpack-start --port 9000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@medconnect/mf-contracts": "workspace:*",
+    "@medconnect/shared": "workspace:*",
+    "expo-router": "~57.0.18",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-reanimated": "4.5.1",
+    "react-native-worklets": "0.10.1"
+  },
+  "devDependencies": {
+    "@callstack/repack": "5.3.0",
+    "@module-federation/enhanced": "2.9.0",
+    "@react-native-community/cli": "^20.2.0",
+    "@types/react": "~19.2.2",
+    "babel-loader": "^9.2.1",
+    "babel-preset-expo": "*",
+    "expo": "~57.0.19",
+    "terser-webpack-plugin": "^5.6.1",
+    "typescript": "~6.0.3",
+    "webpack": "^5.110.3"
+  }
+}

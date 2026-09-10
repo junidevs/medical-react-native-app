@@ -1,0 +1,107 @@
+"use strict";
+(self["webpackChunk_medconnect_portal_remote"] = self["webpackChunk_medconnect_portal_remote"] || []).push([["__federation_expose_PortalScreen"],{
+
+/***/ 69694:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ _arrayLikeToArray; }
+/* harmony export */ });
+function _arrayLikeToArray(r,a){(null==a||a>r.length)&&(a=r.length);for(var e=0,n=Array(a);e<a;e++)n[e]=r[e];return n;}
+
+/***/ }),
+
+/***/ 4334:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ _arrayWithHoles; }
+/* harmony export */ });
+function _arrayWithHoles(r){if(Array.isArray(r))return r;}
+
+/***/ }),
+
+/***/ 18264:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ _asyncToGenerator; }
+/* harmony export */ });
+function asyncGeneratorStep(n,t,e,r,o,a,c){try{var i=n[a](c),u=i.value;}catch(n){return void e(n);}i.done?t(u):Promise.resolve(u).then(r,o);}function _asyncToGenerator(n){return function(){var t=this,e=arguments;return new Promise(function(r,o){var a=n.apply(t,e);function _next(n){asyncGeneratorStep(a,r,o,_next,_throw,"next",n);}function _throw(n){asyncGeneratorStep(a,r,o,_next,_throw,"throw",n);}_next(void 0);});};}
+
+/***/ }),
+
+/***/ 85865:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ _iterableToArrayLimit; }
+/* harmony export */ });
+function _iterableToArrayLimit(r,l){var t=null==r?null:"undefined"!=typeof Symbol&&r[Symbol.iterator]||r["@@iterator"];if(null!=t){var e,n,i,u,a=[],f=!0,o=!1;try{if(i=(t=t.call(r)).next,0===l){if(Object(t)!==t)return;f=!1;}else for(;!(f=(e=i.call(t)).done)&&(a.push(e.value),a.length!==l);f=!0);}catch(r){o=!0,n=r;}finally{try{if(!f&&null!=t["return"]&&(u=t["return"](),Object(u)!==u))return;}finally{if(o)throw n;}}return a;}}
+
+/***/ }),
+
+/***/ 9367:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ _nonIterableRest; }
+/* harmony export */ });
+function _nonIterableRest(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}
+
+/***/ }),
+
+/***/ 97668:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ _slicedToArray; }
+/* harmony export */ });
+/* harmony import */ var _arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4334);
+/* harmony import */ var _iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(85865);
+/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1199);
+/* harmony import */ var _nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9367);
+function _slicedToArray(r,e){return (0,_arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .A)(r)||(0,_iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .A)(r,e)||(0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(r,e)||(0,_nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)();}
+
+/***/ }),
+
+/***/ 1199:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ _unsupportedIterableToArray; }
+/* harmony export */ });
+/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(69694);
+function _unsupportedIterableToArray(r,a){if(r){if("string"==typeof r)return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .A)(r,a);var t={}.toString.call(r).slice(8,-1);return"Object"===t&&r.constructor&&(t=r.constructor.name),"Map"===t||"Set"===t?Array.from(r):"Arguments"===t||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)?(0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .A)(r,a):void 0;}}
+
+/***/ }),
+
+/***/ 99118:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   GO: function() { return /* binding */ REMOTES; },
+/* harmony export */   Ni: function() { return /* binding */ PORTAL_CONTRACT_VERSION; }
+/* harmony export */ });
+/* unused harmony export PORTAL_EXPOSED_MODULE */
+var PORTAL_CONTRACT_VERSION="1.0.0";var PORTAL_EXPOSED_MODULE="./PortalScreen";var REMOTES={portal:"portal"};
+
+/***/ }),
+
+/***/ 48293:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(18264);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(97668);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21574);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17624);
+/* harmony import */ var _medconnect_mf_contracts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(99118);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59227);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+var meta={remote:_medconnect_mf_contracts__WEBPACK_IMPORTED_MODULE_2__/* .REMOTES */ .GO.portal,title:"Portal pacjenta",contractVersion:_medconnect_mf_contracts__WEBPACK_IMPORTED_MODULE_2__/* .PORTAL_CONTRACT_VERSION */ .Ni};function PortalScreen(_ref){var host=_ref.host;var _useState=(0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("idle"),_useState2=(0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .A)(_useState,2),pairing=_useState2[0],setPairing=_useState2[1];var pair=(0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)((0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A)(function*(){setPairing("loading");try{var token=yield host.getAccessToken();var res=yield fetch(`${host.apiBaseUrl}/portal/pairing`,{method:"POST",headers:Object.assign({"content-type":"application/json"},token?{authorization:`Bearer ${token}`}:{}),body:JSON.stringify({sessionId:host.sessionId})});if(!res.ok)throw new Error(`Pairing failed: ${res.status}`);setPairing("done");}catch(error){host.reportError(error,{feature:"portal.pairing"});setPairing("error");}}),[host]);return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_native__WEBPACK_IMPORTED_MODULE_1__.View,{style:styles.wrap,children:[(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_native__WEBPACK_IMPORTED_MODULE_1__.Text,{style:styles.kicker,children:["MICRO-FRONTEND \xB7 ",meta.remote]}),(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_native__WEBPACK_IMPORTED_MODULE_1__.Text,{style:styles.title,children:meta.title}),(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_native__WEBPACK_IMPORTED_MODULE_1__.Text,{style:styles.body,children:"Ten ekran jest ladowany zdalnie przez Module Federation. Mozna go wdrozyc niezaleznie od reszty aplikacji."}),(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_native__WEBPACK_IMPORTED_MODULE_1__.Pressable,{style:styles.button,onPress:pair,disabled:pairing==="loading",children:pairing==="loading"?(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_native__WEBPACK_IMPORTED_MODULE_1__.ActivityIndicator,{color:"#fff"}):(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_native__WEBPACK_IMPORTED_MODULE_1__.Text,{style:styles.buttonText,children:pairing==="done"?"Sparowano":"Sparuj z portalem"})}),pairing==="error"?(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_native__WEBPACK_IMPORTED_MODULE_1__.Text,{style:styles.error,children:"Nie udalo sie sparowac - sprobuj ponownie."}):null,(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_native__WEBPACK_IMPORTED_MODULE_1__.Text,{style:styles.footer,children:["kontrakt v",meta.contractVersion]})]});}var styles=react_native__WEBPACK_IMPORTED_MODULE_1__.StyleSheet.create({wrap:{flex:1,padding:24,justifyContent:"center",gap:12},kicker:{color:"#F0503C",fontWeight:"800",letterSpacing:1,fontSize:12},title:{color:"#141625",fontWeight:"900",fontSize:28},body:{color:"#54607a",fontSize:15,lineHeight:22},button:{marginTop:12,backgroundColor:"#F0503C",paddingVertical:16,borderRadius:16,alignItems:"center"},buttonText:{color:"#fff",fontWeight:"800",fontSize:16},error:{color:"#b3261e",fontWeight:"600"},footer:{marginTop:8,color:"#98a2b3",fontSize:12}});var moduleExport={meta,Screen:PortalScreen};/* harmony default export */ __webpack_exports__["default"] = (moduleExport);
+
+/***/ })
+
+}]);

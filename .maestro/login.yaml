@@ -1,0 +1,6 @@
+appId: com.medconnect.patient
+---
+- launchApp
+- tapOn: "Zaloguj przez Entra ID"
+- assertVisible: "Twoje wizyty"
+
