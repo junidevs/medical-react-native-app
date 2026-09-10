@@ -317,15 +317,3 @@ maestro test .maestro/book-appointment.yaml
 k6 run load-tests/appointments.k6.js
 k6 run load-tests/slots.k6.js
 ```
-
----
-
-## 11. Security notes
-
-- **Backend trust boundary:** the API verifies every access token (JWKS, issuer, audience, `RS256`, scopes) and never trusts the mobile client.
-- **Token storage:** `expo-secure-store` only; refresh uses a single-flight mutex.
-- **Booking integrity:** serializable transaction returns `SLOT_ALREADY_BOOKED` under contention; `Idempotency-Key` prevents duplicate bookings on retry.
-- **Portal WebView:** the app requests a short-lived portal ticket; the portal should exchange it for a `Secure; HttpOnly; SameSite` cookie; raw tokens are never injected into page JS. `originWhitelist` is defense-in-depth.
-- **Logging:** correlation id flows mobile → API → logs/Sentry; `Authorization`, cookies, tokens, email and device tokens are redacted.
-- **Optional hardening:** certificate pinning, root/jailbreak warning banner, per-remote chunk signing (see `REPACK-MF.md`).
-```
